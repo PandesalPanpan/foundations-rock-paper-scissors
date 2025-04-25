@@ -17,52 +17,65 @@ function getHumanChoice() {
     return prompt("Pick Rock, Paper or Scissors", "");
 }
 
-// Score variables
-let humanScore = 0;
-let computerScore = 0;
 
-// Create a function playRound
-// It takes two parameters of humanChoice and computerChoice
-function playRound(humanChoice, computerChoice) {
-    // Make the humanChoice case-insensitive with toLowerCase()
-    let humanChoiceLowercase = humanChoice.toLowerCase();
-    const rock = "rock"; // beat scissors
-    const paper = "paper"; // beat rock
-    const scissors = "scissors"; // beat paper
 
-    // Write the possible cases of who wins or loses
-    // If they are the same, then tie
-    if (humanChoiceLowercase === computerChoice)
-    {
-        return `Tie! Same ${humanChoiceLowercase.charAt(0).toUpperCase() + humanChoiceLowercase.slice(1)}`;
-    }
-    // If human is rock then they either win or lose
-    if (humanChoiceLowercase === rock) {
-        if (computerChoice === scissors) {
+// Declare a playGame function
+function playGame() {
+    // Score variables
+    let humanScore = 0;
+    let computerScore = 0;
+
+    // Create a function playRound
+    // It takes two parameters of humanChoice and computerChoice
+    function playRound(humanChoice, computerChoice) {
+        // Make the humanChoice case-insensitive with toLowerCase()
+        let humanChoiceLowercase = humanChoice.toLowerCase();
+        const rock = "rock"; // beat scissors
+        const paper = "paper"; // beat rock
+        const scissors = "scissors"; // beat paper
+
+        // Write the possible cases of who wins or loses
+        // If they are the same, then tie
+        if (humanChoiceLowercase === computerChoice)
+        {
+            return `Tie! Same ${humanChoiceLowercase.charAt(0).toUpperCase() + humanChoiceLowercase.slice(1)}`;
+        }
+        // If human is rock then they either win or lose
+        if (humanChoiceLowercase === rock) {
+            if (computerChoice === scissors) {
+                humanScore++;
+                return "You win! Rock beats Scissors";
+            }
+            computerScore++;
+            return "You lose! Paper beats Rock";
+        } 
+
+        // If human is paper they can only beat rock or lose
+        if (humanChoiceLowercase === paper) {
+            if (computerChoice === rock) {
+                humanScore++;
+                return "You win! Paper beats Rock.";
+            }
+            computerScore++;
+            return "You lose! Scissors beats Paper.";
+        }
+
+        // Assuming they're scissors, they can only beat paper or lose
+        if (computerChoice === paper) {
             humanScore++;
-            return "You win! Rock beats Scissors";
+            return "You win! Scissors beats Paper.";
         }
         computerScore++;
-        return "You lose! Paper beats Rock";
-    } 
-
-    // If human is paper they can only beat rock or lose
-    if (humanChoiceLowercase === paper) {
-        if (computerChoice === rock) {
-            humanScore++;
-            return "You win! Paper beats Rock.";
-        }
-        computerScore++;
-        return "You lose! Scissors beats Paper.";
+        return "You lose! Rock beats Scissors.";
     }
 
-    // Assuming they're scissors, they can only beat paper or lose
-    if (computerChoice === paper) {
-        humanScore++;
-        return "You win! Scissors beats Paper.";
+    for (let i = 0; i < 5; i++){
+        console.log(playRound(getHumanChoice(), getComputerChoice()));
     }
-    computerScore++;
-    return "You lose! Rock beats Scissors.";
+    return humanScore !== computerScore ? humanScore > computerScore ? 
+    `You win the game! ${humanScore}:${computerScore}` : 
+    `You lose the game! ${computerScore}:${humanScore}` :
+    `Tie game! ${humanScore}:${computerScore}`
 }
 
-console.log(playRound(getHumanChoice(), getComputerChoice()));
+console.log(playGame());
