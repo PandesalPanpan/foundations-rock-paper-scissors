@@ -1,0 +1,9 @@
+.options {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.option {
+    width: 300px;
+    font-size: 72px;
+}

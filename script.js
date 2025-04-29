@@ -69,9 +69,9 @@ function playGame() {
         return "You lose! Rock beats Scissors.";
     }
 
-    for (let i = 0; i < 5; i++){
-        console.log(playRound(getHumanChoice(), getComputerChoice()));
-    }
+    // for (let i = 0; i < 5; i++){
+    //     console.log(playRound(getHumanChoice(), getComputerChoice()));
+    // }
     return humanScore !== computerScore ? humanScore > computerScore ? 
     `You win the game! ${humanScore}:${computerScore}` : 
     `You lose the game! ${computerScore}:${humanScore}` :
