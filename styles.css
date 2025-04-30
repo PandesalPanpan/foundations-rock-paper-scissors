@@ -7,3 +7,11 @@
     width: 300px;
     font-size: 72px;
 }
+
+#results {
+    display: flex;
+    height: 40vh;
+    font-size: 128px;
+    justify-content: center;
+    align-items: center;
+}

@@ -69,19 +69,42 @@ function playGame() {
         return "You lose! Rock beats Scissors.";
     }
 
+    // Create a function that updates the running score
+    function updateScore()
+    {   
+        const results = document.querySelector('#results').textContent = `${humanScore} : ${computerScore}`;
+
+        // Check for winning conditions
+        if (humanScore >= 5 || computerScore >= 5)
+        {
+            alert(humanScore > computerScore ? "You win!" : "You lose!");
+            humanScore = 0;
+            computerScore = 0;
+        } // Output: Alert who's the winner then reset the scores
+
+        // Update the score and if the user picks again -> reset the scores back to 0
+
+        
+    }
+    // Output -> Updates the TextContent of the Results
+
+
     const rockBtn = document.querySelector('#rock');
     const paperBtn = document.querySelector('#paper');
     const scissorsBtn = document.querySelector('#scissors');
 
-    rockBtn.addEventListener('click', () => console.log(playRound('rock', getComputerChoice())));
-    paperBtn.addEventListener('click', () => console.log(playRound('paper', getComputerChoice())));
-    scissorsBtn.addEventListener('click', () => console.log(playRound('scissors', getComputerChoice())));
-
-
-    return humanScore !== computerScore ? humanScore > computerScore ? 
-    `You win the game! ${humanScore}:${computerScore}` : 
-    `You lose the game! ${computerScore}:${humanScore}` :
-    `Tie game! ${humanScore}:${computerScore}`
+    rockBtn.addEventListener('click', () => {
+        console.log(playRound('rock', getComputerChoice()));
+        updateScore();
+    });
+    paperBtn.addEventListener('click', () => {
+        console.log(playRound('paper', getComputerChoice()))
+        updateScore();
+    });
+    scissorsBtn.addEventListener('click', () => {
+        console.log(playRound('scissors', getComputerChoice()))
+        updateScore();
+    });
 }
 
 playGame();
