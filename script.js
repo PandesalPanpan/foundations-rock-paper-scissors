@@ -69,13 +69,19 @@ function playGame() {
         return "You lose! Rock beats Scissors.";
     }
 
-    // for (let i = 0; i < 5; i++){
-    //     console.log(playRound(getHumanChoice(), getComputerChoice()));
-    // }
+    const rockBtn = document.querySelector('#rock');
+    const paperBtn = document.querySelector('#paper');
+    const scissorsBtn = document.querySelector('#scissors');
+
+    rockBtn.addEventListener('click', () => console.log(playRound('rock', getComputerChoice())));
+    paperBtn.addEventListener('click', () => console.log(playRound('paper', getComputerChoice())));
+    scissorsBtn.addEventListener('click', () => console.log(playRound('scissors', getComputerChoice())));
+
+
     return humanScore !== computerScore ? humanScore > computerScore ? 
     `You win the game! ${humanScore}:${computerScore}` : 
     `You lose the game! ${computerScore}:${humanScore}` :
     `Tie game! ${humanScore}:${computerScore}`
 }
 
-console.log(playGame());
+playGame();
